@@ -45,26 +45,72 @@
 	</div>
 	</div>
 	<div class="container">
-	  <h2>Obtaining VECA</h2>
+	  <h2>Modelling and Model Transformation</h2>
 
-	  <p>In order to get VECA you will need:
-      <ul>
-        <li><a href="https://github.com/pascalpoizat/veca-ide/">the VECA plugin for Eclipse</a><br/>
-        to edit models in the VECA DSL and transform them into the VECA JSON format
-        </li>
-        <li><a href="https://github.com/pascalpoizat/veca-haskell">the VECA to timed automata transformer</a><br/>
-        to transform models in the VECA JSON format into timed automata in the XTA format
-        </li>
-      </ul>
+	  <p>In order to model and enable the verification of your models,
+      <b>you should install both</b> the Eclipse plugin for VECA and the VECA core tool.<br/>
+      The direct use of the VECA JSON format (avoiding the installation of the Eclipse plugin) is possible but not recommended.
+      <div>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-6">
+          <a class="btn btn-md btn-primary" href="https://github.com/pascalpoizat/veca-ide/" role="button">
+            <i class="fa fa-download fa-2x pull-left"></i>
+            Eclipse VECA plugin
+          </a>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-12">
+          to edit models in the VECA DSL and transform them into the VECA JSON format<br>
+          <em>-- available as an Eclipse update site (easy install)</em>
+          </div>
+        </div>
+        <div class="row"><br/></div>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-6">
+          <a class="btn btn-md btn-primary" href="https://github.com/pascalpoizat/veca-haskell/" role="button">
+            <i class="fa fa-download fa-2x pull-left"></i>
+            VECA core tool
+          </a>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-12">
+          to transform models in the VECA JSON format into networks of timed automata in the XTA format<br/>
+          <em>-- available as source code only (building from sources is easy thanks to the installation of the <a href="https://haskell-lang.org/get-started">stack project builder</a></a>)</em>
+          </div>
+        </div>
+      </div>
     </p>
 
-    <p>In order to perform timed verification of the models once transformed in timed automata,
-      you will need to install one of these external tools:
-      <ul>
-        <li><a href="https://lip6.github.io/ITSTools-web/">ITS Tools</a></li>
-        <li><a href="http://uppaal.org">UPPAAL</a></li>
-      </ul>
-    </p>
+    <h2>Model Verification</h2>
+
+	  <p>In order to perform timed verification of the models once transformed into networks of timed automata,
+        <b>you must install at least one</b> of these external tools.
+        <div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+            <a class="btn btn-md btn-primary" href="https://lip6.github.io/ITSTools-web/" role="button">
+              <i class="fa fa-download fa-2x pull-left"></i>
+              ITS Tools
+            </a>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-12">
+            an easy to use and powerful model-checker<br/>
+            <em>-- available as an Eclipse update site (easy install)</em>
+            </div>
+          </div>
+          <div class="row"><br/></div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+            <a class="btn btn-md btn-primary" href="http://uppaal.org" role="button">
+              <i class="fa fa-download fa-2x pull-left"></i>
+              UPPAAL
+            </a>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-12">
+            an integrated tool environment with verification features for real-time systems<br/>
+            <em>-- available as binaries (easy install)</em>
+            </div>
+          </div>
+        </div>
+      </p>
     
     <hr>
 
