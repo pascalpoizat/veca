@@ -11,6 +11,8 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/verchor-template.css" rel="stylesheet">
+    <!-- Syntax highlighting -->
+    <link href="css/prism.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,17 +46,114 @@
 	</div>
 	</div>
 	</div>
-	<div class="container">
+	<div class="container language-veca">
 
     <h2>Installation</h2>
     
     <p>See <a href="downloads.html">the downloads page</a> for information about installation.</p>
 
     <h2>VECA DSL</h2>
-    
+
+    <p>For people at ease with grammars, the XText grammar of the VECA DSL is available <a href="https://github.com/pascalpoizat/veca-ide/blob/master/fr.lip6.veca.ide/src/fr/lip6/veca/ide/VecaDsl.xtext">here</a>.</p>
+
+    <h3>Signatures</h3>
+
+    <p>A signature is given as
+      a set of messages (possibly empty), 
+      a set of provided operations (possibly empty), and
+      a set of required operations (possibly empty). 
+      For operations, the input and the output message are given.
+      It is possible not to have an output message but the input message is mandatory.</p>
+  
+    <pre><code>
+  signature
+    messages m1, m2, m3;
+    provides op1(m1), op2(m1): m2;
+    requires op3(m3): m2;
+    </code></pre>
+
+    <h3>Behaviors</h3>
+
+    <p>A behavior is given as a transition system with an initial state, final states (at least one), and transition sets.
+      A transition set is given as a source state, and couples made up of an action and a target state.
+      An action can be either an internal action (tau) or a communication action (reception of an operation call, reply to this call, invocation of an operation call, getting the result of this call).
+    </p>
+
+    <pre><code>
+  behavior
+    start in begin;
+    stop in end1 end2;
+    begin:            receive op1 then end1,
+                      receive op2 then compute_arg;
+    compute_arg:      tau then call_subservice;
+    call_subservice:  invoke op3 then wait_result;
+    wait_result:      result op3 then send_reply;
+    send_reply:       reply op2 then end2;
+    end1:;
+    end2:;
+      </code></pre>
+
+    <h3>Time constraints</h3>
+
+    <p>A time constraint specifies the minimum and maximum amount of time passing between two communication actions.
+      Time constraints can be used to specify, e.g., the maximum amount of time expected for a required operation (between its invocation and the result),
+      the range in which an operation can be achieved by the component (between the reception and the reply to this operation), or
+      information about the time required to perform an internal operation.
+      Time constraints refer to units of time (uot) and the designer can chose any uniform (for all the model) interpretation for them (1 second, 1 minute, 1 hour, ...).
+    </p>
+
+    <pre><code>
+  constraints
+    invoke op1  -> result op3 : 0 .. 10 // subservice should take at most 10 uot
+    receive op2 -> reply op2  : 2 .. 12 // the component takes between 2 and 12 uot to do op2
+    receive op2 -> invoke op3 : 1 .. 3; // the internal computation takes between 1 and 3 uot
+    </code></pre>
+
+    <p>This component definition is indeed inconsistent, we will see this later on in the verification part.</p>
+
+    <p>In this example one may also see that comments are entered using //.</p>
+
+    <h3>Basic component types</h3>
+
+    <p>A basic component is given as a signature, a behavior, and (optionally) a set of time constraints.</p>
+
+    <pre><code>basic component type Type1 is
+  signature ...
+  behavior ...
+  constraints ...
+end</code></pre>
+
+    <h3>Bindings</h3>
+
     <p>To appear.</p>
 
-    <h2>Verification of a VECA model</h2>
+    <h3>Composite component types</h3>
+
+    <p>To appear.</p>
+
+    <h3>Aspects and weaving</h3>
+
+    <p>To appear.</p>
+
+    <h3>All in one</h3>
+
+    <p>The complete example is as follows.</p>
+
+    <pre><code>
+      to appear
+    </code></pre>
+
+    <h2>Syntactic verification</h2>
+
+    <p>The Eclipse VECA plugin (see <a href="downloads.html">downloads</a>) provides you with some model verifications that can be performed directly on the VECA model:
+    <ul>
+      <li>compatible operations in bindings (same name, same message types, internal bindings relate a provided operation to a required one, external bindings relate a composite provided operation to a provided operation in one of its sub-components or a sub-component required operation to a required operation in its composite)</li>
+      <li>distinct identifier for bindings in a given composite</li>
+      <li>no self binding</li>
+    </ul>
+    </p>
+
+    <h2>Semantic verification</h2>
 
     <p>To appear.</p>
 
@@ -75,5 +174,8 @@
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <!-- syntax highligthing -->
+    <script src="js/prism.js"></script>
+    <script src="js/veca.js"></script>
   </body>
 </html>
