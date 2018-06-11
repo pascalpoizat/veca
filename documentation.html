@@ -123,13 +123,17 @@
   constraints ...
 end</code></pre>
 
-    <h3>Bindings</h3>
-
-    <p>To appear.</p>
-
     <h3>Composite component types</h3>
 
-    <p>To appear.</p>
+    <p>Composite components are made up of sub-components and bindings.
+      Bindings denote binary, possibly two-way, communication channels.
+      There are two kinds of bindings.
+      An <b>internal binding</b> is used for communication between two sub-components of a composite.
+      An <b>external binding</b> is used for communication between the environment of a composite and one of the sub-components of this composite.
+      Using our hierarchical component model, internal, and external bindings, it is possible to have components in different hierarchical level that communicate.
+    </p>
+
+    <pre><code></code></pre>
 
     <h3>Aspects and weaving</h3>
 
@@ -148,7 +152,8 @@ end</code></pre>
     <p>The Eclipse VECA plugin (see <a href="downloads.html">downloads</a>) provides you with some model verifications that can be performed directly on the VECA model:
     <ul>
       <li>compatible operations in bindings (same name, same message types, internal bindings relate a provided operation to a required one, external bindings relate a composite provided operation to a provided operation in one of its sub-components or a sub-component required operation to a required operation in its composite)</li>
-      <li>distinct identifier for bindings in a given composite</li>
+      <li>distinct identifiers for bindings in a given composite</li>
+      <li>distinct identifiers for sub-components in a given composite</li>
       <li>no self binding</li>
     </ul>
     </p>
